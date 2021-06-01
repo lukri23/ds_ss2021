@@ -24,7 +24,7 @@ def make_pictur_st(n_clusters, labels, data, reduction_method, metric, dataset_n
 
     return fig
     
-def change_dataset(name):
+def change_dataset(name, metric):
     index_data = {'penguins': 0,
                   'winequality': 3,
                   'iris': 2,
@@ -43,8 +43,19 @@ st.write("""
 Hallo hier ist meine erste App!!!
 """)
 
-select_data = st.selectbox('select dataset', dataset_name)
-n_clusters = st.slider(label='Select k', min_value=2, max_value=5, key=4)
+col1, col2 = st.beta_columns([3, 1])
 
-st.write(change_dataset(select_data))
+select_data = col2.selectbox('Select dataset', dataset_name)
+n_clusters = col2.slider(label='Select k', min_value=2, max_value=5, key=4)
+celect_metric = col2.selectbox('Select metric', metric_list)
 
+col1.write(change_dataset(select_data, celect_metric))
+
+
+
+st.write(""" # Übersicht von mehreren Datasets """)
+
+multiselect_datset = st.multiselect('Welche Datasets select:', dataset_name)
+
+for i in multiselect_datset:
+    st.write(i)
