@@ -48,6 +48,8 @@ dataset_name_emoji = {'penguins': "\U0001F427\tPenguins (3)",
                       'iris': "\U0001F33A\tIris (3)", 
                       'winequality': "\U0001F377\tWinequality (7)"}
 
+metric_name = {"euclidean": "Euclidean", "cosine": "Cosine", "manhattan": "Manhattan", "minkowskinorm": "Minkowski"}
+metric_list_web = ["euclidean", "cosine", "manhattan", "minkowskinorm"]
 st.write("""
 # Topic T4
 """)
@@ -56,7 +58,7 @@ col1, col2 = st.beta_columns([3, 1])
 
 select_data = col2.selectbox('Select dataset', dataset_name, format_func=lambda x: dataset_name_emoji[x])
 n_clusters = col2.number_input(label='Number of Clusters (k)', min_value=2, max_value=20, key=4)
-celect_metric = col2.selectbox('Select metric', metric_list)
+celect_metric = col2.selectbox('Select metric', metric_list_web, format_func=lambda x: metric_name[x])
 reduction_method = col2.selectbox('Select Reduction Method', ['TSNE', 'PCA']) # ['TSNE (distributed Stochastic Neighbor Embedding)', 'PCA (Principal component analysis)']
 tem_dataset = change_dataset(select_data, celect_metric)
 col1.write(tem_dataset[0])
