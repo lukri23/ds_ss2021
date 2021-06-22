@@ -25,7 +25,7 @@ def make_pictur_st(n_clusters, labels, data, reduction_method, metric, dataset_n
     ax2.title.set_text('Real Clusters')
 
     return fig
-    
+
 def change_dataset(name, metric):
     index_data = {'penguins': 0,
                   'winequality': 3,
@@ -36,7 +36,7 @@ def change_dataset(name, metric):
     dataset = prepare_the_dataset(df[index_data], dataset_name[index_data], categorical_variables)
     labels = make_the_clusters(n_clusters,dataset['X'],None,metric)
     metric_list_result = []
-    for i in metric_list:
+    for i in metric_list_web:
         dataset_temp = prepare_the_dataset(df[index_data], dataset_name[index_data], categorical_variables)
         labels_temp = make_the_clusters(n_clusters,dataset['X'],None,i)
         metric_list_result.append(metrics.adjusted_rand_score(labels_temp, dataset_temp['y']))
@@ -72,7 +72,7 @@ st.write(""" # Quality of Clustering
 
 # multiselect_datset = st.multiselect('Welche Datasets select:', dataset_name)
 df_evaluation = pd.DataFrame()
-df_evaluation['metric'] = metric_list
+df_evaluation['metric'] = ["Euclidean", "Cosine", "Manhattan", "Minkowski"]
 df_evaluation['value'] = tem_dataset[1]
 st.write(df_evaluation)
 
