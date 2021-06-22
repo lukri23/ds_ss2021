@@ -1,3 +1,8 @@
+"""
+All authors confirm that they contributed equally to the project report and
+were involved in the implementation and evaluation to the same extent.
+"""
+
 import streamlit as st
 from sklearn import metrics
 from ipynb.fs.full.group_4 import *
